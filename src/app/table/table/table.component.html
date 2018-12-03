@@ -1,0 +1,22 @@
+<table class="table">
+  <caption style="caption-side: top;text-align: right">
+    <button class="btn-primary" (click)="addRecord()">Add Record</button>
+  </caption>
+  <thead class="thead-dark">
+    <tr>
+      <th *ngFor='let theader of heading'>{{theader | uppercase}}</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let record of tableRecord'>
+      <td *ngFor='let theader of key'>
+        {{record[theader]}}
+      </td>
+      <td>
+        <button class="btn-primary" (click)="editRecord(record.id)">Edit</button>
+        <button class="btn-primary" (click)="deleteRecord(record.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
