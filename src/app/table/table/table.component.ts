@@ -13,10 +13,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class TableComponent implements OnInit {
 
   //Declear the variable
-  public record;
-  public key;
+  private record: any[];
+  public key: any[];
+
   @Input() public heading: any[];
-  @Input() set tableRecord(value) {
+  @Input() set tableRecord(value: any[]) {
     this.record = value;
     this.record.forEach(element => {
       this.key = Object.keys(element);
@@ -26,10 +27,11 @@ export class TableComponent implements OnInit {
   get tableRecord() {
     return this.record;
   }
+
   // Pass the value to the user
-  @Output() addButton = new EventEmitter();
-  @Output() deleteButton = new EventEmitter();
-  @Output() editButton = new EventEmitter();
+  @Output() addClick = new EventEmitter();
+  @Output() deleteClick = new EventEmitter();
+  @Output() editClick = new EventEmitter();
 
   constructor() { }
 
@@ -38,14 +40,14 @@ export class TableComponent implements OnInit {
 
   // When user Click on add button Go to Add page
   public addRecord() {
-    this.addButton.emit();
+    this.addClick.emit();
   }
   // When user Click on delete button delete the record
-  public deleteRecord(id: any) {
-    this.deleteButton.emit(id);
+  public deleteRecord(record: any) {
+    this.deleteClick.emit(record);
   }
   // When user Click on edit button user go on edit page
-  public editRecord(id: any) {
-    this.editButton.emit(id);
+  public editRecord(record: any) {
+    this.editClick.emit(record);
   }
 }
